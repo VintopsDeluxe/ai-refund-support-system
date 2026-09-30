@@ -14,7 +14,7 @@ export async function loginAdmin({ email, password }) {
     password,
     admin.password_hash
   );
-
+console.log("Password matches:", passwordMatches);
   if (!passwordMatches) {
     throw new Error("Invalid email or password");
   }
