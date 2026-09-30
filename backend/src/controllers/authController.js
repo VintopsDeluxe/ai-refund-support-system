@@ -21,12 +21,13 @@ export async function login(req, res) {
       message: "Login successful",
       data: result,
     });
-  } catch (error) {
-    console.error("Admin login error:", error);
+ } catch (error) {
+  console.error("Admin login error:", error);
 
-    return res.status(401).json({
-      success: false,
-      message: error.code || "Invalid email or password",
-    });
-  }
+  return res.status(401).json({
+    success: false,
+    message: error.code || "Invalid email or password",
+    details: error.details || null,
+  });
+}
 }

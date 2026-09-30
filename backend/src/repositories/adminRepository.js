@@ -19,7 +19,11 @@ export async function getAdminByEmail(email) {
     .maybeSingle();
 
   if (error) {
-    throw new Error(error.message);
+    const diagnosticError = new Error("Failed to query admin");
+    diagnosticError.code = "SUPABASE_ADMIN_QUERY_ERROR";
+    diagnosticError.details = error.message;
+
+    throw diagnosticError;
   }
 
   return data;
