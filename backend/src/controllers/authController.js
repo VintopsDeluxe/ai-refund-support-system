@@ -26,7 +26,7 @@ export async function login(req, res) {
 
     return res.status(401).json({
       success: false,
-      message: "Invalid email or password",
+      message: error.code || "Invalid email or password",
     });
   }
 }
