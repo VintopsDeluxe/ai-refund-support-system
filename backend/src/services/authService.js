@@ -7,9 +7,7 @@ export async function loginAdmin({ email, password }) {
   const admin = await getAdminByEmail(email);
 
   if (!admin) {
-    const error = new Error("Invalid email or password");
-    error.code = "ADMIN_NOT_FOUND";
-    throw error;
+    throw new Error("Invalid email or password");
   }
 
   const passwordMatches = await bcrypt.compare(
@@ -18,9 +16,7 @@ export async function loginAdmin({ email, password }) {
   );
 
   if (!passwordMatches) {
-    const error = new Error("Invalid email or password");
-    error.code = "PASSWORD_MISMATCH";
-    throw error;
+    throw new Error("Invalid email or password");
   }
 
   const token = jwt.sign(
